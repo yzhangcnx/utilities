@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<project name="ver" default="go" basedir="..">
+	<!-- property name="sysJre" location="C:\j2sdk1.4.2_05\jre"/ -->
+	<property name="sysJre" location="C:\jdk1.5.0_08\jre"/>
+	<property name="projectDir" value="C:\Connecture\tools"/>
+	<property name="srcDir" value="src"/>
+	<property name="buildDir" value="classes"/>
+	<property name="libDir" value="lib"/>
+	<property name="configDir" value="scripts"/>
+	<!--
+	<property file="${configDir}\vers.properties"/>
+	<property name="run.task" value="decrypt"/>
+	<property name="run.param" value="PdLqYGc8/TLx+E7RDVHgmg=="/>
+	<property name="run.param2" value="wpnedev"/>
+	-->
+		
+	<path id="lib">
+		<!-- fileset dir="${libDir}" includes="*.jar"/ -->
+		<pathelement location="${libDir}/bcprov-jdk14-132.jar"/>
+		<pathelement location="${libDir}/framework-3.jar"/>
+	</path>
+	
+	<target name="go" depends="compile, run"/>
+	
+	<target name="scramble" depends="scramble_prop, run" description=""/>
+	
+	<target name="discramble" depends="discramble_prop, run" description=""/>
+	
+	<target name="scramble_prop">
+		<property name="run.task" value="scramble"/>
+	</target>
+		
+	<target name="discramble_prop">
+		<property name="run.task" value="discramble"/>
+	</target>
+	
+	<target name="load">
+		<property file="${configDir}\vers.properties"/>
+	</target>
+	
+	<target name="run" depends="load">
+		<!-- echo message="${ant.java.version}"/ -->
+		<java classpathref="lib" classpath="${buildDir}" classname="VersWizard" fork="true">
+			<arg value="${run.task}"/>
+			<arg value="${run.param}"/>
+			<arg value="${run.param2}"/>
+			<arg value="${run.param3}"/>
+		</java>
+		<tstamp>
+			<format property="TSTAMP" pattern="hh:mm:ss mmm"/>
+			<format property="DSTAMP" pattern="MM/dd/yyyy"/>
+		</tstamp>
+		<echo message="Finished at -- ${DSTAMP} ${TSTAMP}"/>
+	</target>
+	
+	<target name="compile" depends="clean" description="generate class files">
+		<javac classpathref="lib" srcdir="${srcDir}" destdir="${buildDir}" debug="true"/>	
+	</target>
+	
+	<target name="clean">
+		<!-- selectively delete files in a directory -->
+		<delete>
+			<fileset dir="${buildDir}">
+			    <include name="*.class"/>
+			</fileset>
+		</delete>
+		<!-- delete the whole specified directory -->
+		<!-- delete dir="${buildDir}"/ -->
+	</target>
+</project>

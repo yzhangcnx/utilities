@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.yong.hibernate">
+	<class name="Contact" table="CONTACT">
+		<id name="id" type="integer" column="CONTACT_ID" >
+   			<generator class="native"/>
+  		</id>
+		<property name="firstName" type="string" column="FIRST_NAME"/>
+		<property  name="lastName" type="string" column="LAST_NAME"/>
+		<set name="urls" table="URL" cascade="all"  lazy="true">
+			<key column="CONTACT_ID"/>
+			<one-to-many class="com.yong.hibernate.URL"/>
+		</set>
+	</class>
+</hibernate-mapping>

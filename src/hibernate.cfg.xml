@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<property name="hibernate.connection.driver_class">com.jnetdirect.jsql.JSQLDriver</property>
+    	<property name="hibernate.connection.url">jdbc:JSQLConnect://10.1.3.10/portNumber=1433/database=pubs/trustedAuthentication=true/asciiStringParameters=true/iterativeBatching=true</property>
+        <property name="hibernate.default_catalog">pubs</property>
+        <property name="hibernate.default_schema">guest</property>
+        <!-- property name="hibernate.connection.driver_class">com.microsoft.jdbc.sqlserver.SQLServerDriver</property>
+    	<property name="hibernate.connection.url">jdbc:microsoft:sqlserver://Ctdb1\dev;DatabaseName=WPNE_R3_29_DEV_TRAN;SelectMethod=cursor</property>
+        <property name="hibernate.default_catalog">WPNE_R3_29_DEV_TRAN</property>
+        <property name="hibernate.default_schema">dbo</property>
+        <property name="hibernate.connection.username">yongzhang</property>
+        <property name="hibernate.connection.password">password1</property -->
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.show_sql">true</property>
+    	<!-- property name="hibernate.hbm2ddl.auto">update</property -->
+    	<mapping resource="com/yong/hibernate/Contact.hbm.xml" />
+    	<mapping resource="com/yong/hibernate/URL.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

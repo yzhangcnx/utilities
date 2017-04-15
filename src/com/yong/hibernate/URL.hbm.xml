@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.yong.hibernate">
+  <class name="URL" table="URL">
+  	<id name="id" type="integer" column="URL_ID">
+  		<generator class="native"/>
+  	</id>
+  	<!-- property name="contactId" type="integer" column="CONTACT_ID"/ -->
+  	<property name="url" type="string" column="URL_VALUE"/>
+  	<property name="version" type="timestamp" column="VERSION"/>
+  </class>
+</hibernate-mapping>
